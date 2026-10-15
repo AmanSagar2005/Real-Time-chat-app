@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import dns from "node:dns";
 import authRouter from "./routes/auth.route.js";
 import messageRouter from "./routes/message.route.js";
 import userRouter from "./routes/user.route.js";
@@ -15,6 +16,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 connectToDB();
 
 app.use(express.json({ limit: "10mb" }));
